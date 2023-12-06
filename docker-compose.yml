@@ -1,0 +1,21 @@
+version: '3'
+services:
+    spring-app:
+      image: 'application'
+      build: .
+      ports:
+        - "8081:8081"
+      depends_on:
+        - mongodb
+      environment:
+        - SPRING_DATASOURCE_URL:mongodb://mongodb:27017/admin
+
+    mongodb:
+      image: 'mongo'
+      ports:
+        - "27017:27017"
+      volumes:
+        - ./data:/data/db
+      environment:
+        - MONGO_INITDB_ROOT_USERNAME=mongodb
+        - MONGO_INITDB_ROOT_PASSWORD=mongodb
