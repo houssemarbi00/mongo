@@ -14,7 +14,11 @@ spec:
     spec:
       containers:
         - name: spring-app
-          image: your-spring-app-image
+          image: application
           ports:
-            - containerPort: 8080
-
+            - containerPort: 8081
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: "mongodb://mongodb:27017/admin"
+      imagePullSecrets:
+        - name: credential-kub1
